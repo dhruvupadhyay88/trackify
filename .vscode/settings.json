@@ -1,4 +1,6 @@
 {
     "prettier.arrowParens": "avoid",
-    "prettier.tabWidth": 4
+    "prettier.tabWidth": 4,
+    "prettier.useTabs": true,
+    "prettier.jsxBracketSameLine": true
 }
