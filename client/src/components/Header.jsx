@@ -1,13 +1,32 @@
 import React from "react";
 import styled from "styled-components";
 import { Navbar } from "react-bootstrap";
+import { useImage } from "react-image";
+
+const Image = () => {
+	const { src } = useImage({
+		srcList: "../../images/logo.png",
+	});
+
+	return <img src={src} />;
+};
 
 export const Header = () => {
 	return (
-		<Navbar bg="rgb(100,100,100)">
-			<Navbar.Brand href="#home">
-				<img src="../../images/logo.png" />
+		<Nav>
+			<Navbar.Brand>
+				<img
+					src={require("../images/bruhhh.png")}
+					width="200"
+					height="70"
+					className="d-inline-block align-top"
+				/>
 			</Navbar.Brand>
-		</Navbar>
+		</Nav>
 	);
 };
+
+const Nav = styled(Navbar)`
+	background-color: rgb(25, 25, 25);
+	margin-bottom: 100px;
+`;

@@ -26,8 +26,9 @@ export const App = () => {
 
 	return (
 		<>
-			<Header />
 			<Wrapper fluid="xs">
+				<Header />
+
 				{!data.loggedIn ? (
 					<a href="http://localhost:8888">
 						<Button>Login to Spotify</Button>
@@ -35,7 +36,7 @@ export const App = () => {
 				) : (
 					<>
 						<Row className="justify-content-center">
-							<Col xs={7}>
+							<Col xs={9}>
 								<Songs token={params.access_token} />
 							</Col>
 						</Row>
@@ -47,7 +48,7 @@ export const App = () => {
 };
 
 const Wrapper = styled(Container)`
-	background-color: rgb(25, 25, 25);
+	background-color: rgb(35, 35, 35);
 	align-items: center;
 	justify-content: center;
 `;
