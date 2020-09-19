@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import Spotify from "spotify-web-api-js";
 import { Button, Container, Row, Col } from "react-bootstrap";
 import styled from "styled-components";
-import { Songs } from "./components/Songs";
-import { Header } from "./components/Header";
+import { TopTracks } from "./components/TopTracks";
+import { Dashboard } from "./components/Dashboard";
+import { LoginHeader } from "./components/Login/LoginHeader";
+import Background from "./images/loginbg.jpg";
 
 const spotify = new Spotify();
 
@@ -26,29 +28,74 @@ export const App = () => {
 
 	return (
 		<>
-			<Wrapper fluid="xs">
-				<Header />
-
-				{!data.loggedIn ? (
-					<a href="http://localhost:8888">
-						<Button>Login to Spotify</Button>
-					</a>
-				) : (
-					<>
-						<Row className="justify-content-center">
-							<Col xs={9}>
-								<Songs token={params.access_token} />
-							</Col>
-						</Row>
-					</>
-				)}
-			</Wrapper>
+			{!data.loggedIn ? (
+				<Wrapper
+					fluid="xs"
+					style={{
+						backgroundImage: `url(${Background})`,
+						backgroundRepeat: "no-repeat",
+						backgroundSize: "cover",
+						position: "absolute",
+						top: "0",
+						bottom: "0",
+						left: "0",
+						right: "0",
+					}}>
+					<LoginHeader />
+					<div
+						style={{
+							display: "flex",
+							justifyContent: "center",
+							alignItems: "center",
+							flexDirection: "column",
+							marginTop: "210px",
+						}}>
+						<a href="http://localhost:8888/login">
+							<Login variant="success">Log in with Spotify</Login>
+						</a>
+						<h7
+							style={{
+								color: "rgb(110,110,110)",
+								marginTop: "20px",
+							}}>
+							Made by{" "}
+							<span
+								class="iconify"
+								data-icon="ant-design:github-filled"
+								data-inline="false"
+								style={{ marginBottom: "4px" }}></span>
+							{"  "}
+							<a
+								href="https://github.com/dhruvupadhyay88"
+								style={{ color: "rgb(140,140,140)" }}>
+								Dhruv Upadhyay
+							</a>
+						</h7>
+					</div>
+				</Wrapper>
+			) : (
+				<Wrapper fluid="xs">
+					<Dashboard />
+					<Row className="justify-content-center">
+						<Col xs={9}>
+							<TopTracks token={params.access_token} />
+						</Col>
+					</Row>
+				</Wrapper>
+			)}
 		</>
 	);
 };
 
 const Wrapper = styled(Container)`
-	background-color: rgb(35, 35, 35);
+	background-color: rgb(18, 18, 18);
 	align-items: center;
 	justify-content: center;
+`;
+
+const Login = styled(Button)`
+	width: 200px;
+	height: 50px;
+	border-radius: 50px;
+	font-size: 17px;
 `;
