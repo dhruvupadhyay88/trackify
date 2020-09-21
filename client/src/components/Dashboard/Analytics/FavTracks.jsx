@@ -5,21 +5,15 @@ import { Table, Button } from "react-bootstrap";
 
 const spotify = new Spotify();
 
-export const TopTracks = ({ token }) => {
+export const FavTracks = ({ trackData }) => {
 	const [favTracks, setFavTracks] = useState();
 	const [tableRange, setTableRange] = useState([0, 10]);
 	const [isDisabled, setIsDisabled] = useState([true, false]);
 	const length = favTracks ? favTracks.items.length : 0;
 
 	useEffect(() => {
-		spotify.setAccessToken(token);
-		spotify
-			.getMyTopTracks({ limit: 50, time_range: "short_term" })
-			.then(response => {
-				setFavTracks(response);
-			});
-	}, [token]);
-	console.log(length);
+		setFavTracks(trackData);
+	}, [trackData]);
 
 	const Next = () => {
 		setIsDisabled(prevState => {

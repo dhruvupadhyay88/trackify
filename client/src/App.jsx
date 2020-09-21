@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Spotify from "spotify-web-api-js";
 import { Button, Container, Row, Col } from "react-bootstrap";
 import styled from "styled-components";
-import { TopTracks } from "./components/TopTracks";
 import { Dashboard } from "./components/Dashboard";
 import { LoginHeader } from "./components/Login/LoginHeader";
 import Background from "./images/loginbg.jpg";
@@ -26,6 +25,9 @@ export const App = () => {
 		loggedIn: params.access_token ? true : false,
 	});
 
+	if (data.loggedIn) {
+		spotify.setAccessToken(params.access_token);
+	}
 	return (
 		<>
 			{!data.loggedIn ? (
@@ -48,7 +50,7 @@ export const App = () => {
 							justifyContent: "center",
 							alignItems: "center",
 							flexDirection: "column",
-							marginTop: "210px",
+							marginTop: "230px",
 						}}>
 						<a href="http://localhost:8888/login">
 							<Login variant="success">Log in with Spotify</Login>
@@ -75,12 +77,7 @@ export const App = () => {
 				</Wrapper>
 			) : (
 				<Wrapper fluid="xs">
-					<Dashboard />
-					<Row className="justify-content-center">
-						<Col xs={9}>
-							<TopTracks token={params.access_token} />
-						</Col>
-					</Row>
+					<Dashboard token={params.access_token} />
 				</Wrapper>
 			)}
 		</>
@@ -98,4 +95,5 @@ const Login = styled(Button)`
 	height: 50px;
 	border-radius: 50px;
 	font-size: 17px;
+	font-weight: 600;
 `;

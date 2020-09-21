@@ -17,7 +17,7 @@ export const LoginHeader = () => {
 					}}
 				/>
 				<h1 style={{ color: "rgb(29,185,84)", marginLeft: "30px" }}>
-					Spotify Statistics
+					Spotify Stats
 				</h1>
 			</Navbar.Brand>
 		</Nav>
