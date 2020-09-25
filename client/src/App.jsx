@@ -77,7 +77,7 @@ export const App = () => {
 				</Wrapper>
 			) : (
 				<Wrapper fluid="xs">
-					<Dashboard token={params.access_token} />
+					<Dashboard/>
 				</Wrapper>
 			)}
 		</>

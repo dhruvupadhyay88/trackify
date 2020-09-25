@@ -3,8 +3,6 @@ import Spotify from "spotify-web-api-js";
 import styled from "styled-components";
 import { Table, Button } from "react-bootstrap";
 
-const spotify = new Spotify();
-
 export const FavTracks = ({ trackData }) => {
 	const [favTracks, setFavTracks] = useState();
 	const [tableRange, setTableRange] = useState([0, 10]);
