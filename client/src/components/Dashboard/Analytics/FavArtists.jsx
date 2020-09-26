@@ -2,20 +2,20 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Table, Button } from "react-bootstrap";
 
-export const FavTracks = ({ trackData }) => {
-	const [favTracks, setFavTracks] = useState();
+export const FavArtists = ({ artistData }) => {
+	const [favArtists, setFavArtists] = useState();
 	const [tableRange, setTableRange] = useState([0, 10]);
 	const [isDisabled, setIsDisabled] = useState([true, false]);
-	const length = favTracks ? favTracks.items.length : 0;
+	const length = favArtists ? favArtists.items.length : 0;
 
 	useEffect(() => {
-		setFavTracks(trackData);
+		setFavArtists(artistData);
 		setTableRange([0, 10]);
-	}, [trackData]);
+	}, [artistData]);
 
 	const Next = () => {
 		setIsDisabled(prevState => {
-			const ans = tableRange[1] + 10 === length ? true : false;
+			const ans = tableRange[1] + 10 >= length ? true : false;
 			return [false, ans];
 		});
 		setTableRange(prevState => [prevState[0] + 10, prevState[1] + 10]);
@@ -23,7 +23,7 @@ export const FavTracks = ({ trackData }) => {
 
 	const Previous = () => {
 		setIsDisabled(prevState => {
-			const ans = tableRange[0] - 10 === 0 ? true : false;
+			const ans = tableRange[0] - 10 <= 0 ? true : false;
 			return [ans, false];
 		});
 		setTableRange(prevState => [prevState[0] - 10, prevState[1] - 10]);
@@ -31,44 +31,48 @@ export const FavTracks = ({ trackData }) => {
 
 	return (
 		<Table striped bordered hover variant="dark" size="md">
-			{favTracks && (
+			{favArtists && (
 				<>
 					<thead>
 						<tr>
 							<th>Rank</th>
-							<th>Song Name</th>
-							<th>Artists</th>
-							<th>Album</th>
-							<th>Cover</th>
+							<th>Picture</th>
+							<th>Name</th>
+							<th>Popularity</th>
+							<th>Genre</th>
 						</tr>
 					</thead>
 					<tbody>
-						{favTracks.items
+						{favArtists.items
 							.slice(tableRange[0], tableRange[1])
 							.map((data, index) => {
-								const artists = data.artists.length;
+								const genres =
+									data.genres.length > 3
+										? 3
+										: data.genres.length;
 								return (
 									<tr key={index}>
 										<td>{index + tableRange[0] + 1}</td>
-										<td>{data.name}</td>
-										<td>
-											{data.artists.map((data, index) => {
-												if (artists === index + 1) {
-													return data.name;
-												}
-												return data.name + ", ";
-											})}
-										</td>
-										<td>{data.album.name}</td>
 										<td>
 											{
 												<img
-													src={
-														data.album.images[0].url
-													}
-													style={{ height: 40 }}
+													src={data.images[0].url}
+													style={{ height: "80px" }}
 												/>
 											}
+										</td>
+										<td>{data.name}</td>
+										<td>{data.popularity}</td>
+										<td>
+											{data.genres
+												.slice(0, genres)
+												.map((data, index) => {
+													if (genres === index + 1) {
+														return data;
+													}
+
+													return data + ", ";
+												})}
 										</td>
 									</tr>
 								);

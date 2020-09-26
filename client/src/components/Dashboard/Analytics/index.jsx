@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Spotify from "spotify-web-api-js";
 import { FavTracks } from "./FavTracks";
+import { FavArtists } from "./FavArtists";
 import {
 	Row,
 	Col,
@@ -15,22 +16,28 @@ import TopArtistPic from "../../../images/topartist.jpg";
 import styled from "styled-components";
 
 const spotify = new Spotify();
+const Spinner = require("react-spinkit");
 
 export const Analytics = () => {
 	const [select, setSelected] = useState("Tracks");
 	const [timeRange, setTimeRange] = useState("short_term");
-	const [data, setData] = useState();
+	const [topTracks, setTopTracks] = useState();
+	const [topArtists, setTopArtists] = useState();
 
 	useEffect(() => {
 		if (select === "Tracks") {
 			spotify
 				.getMyTopTracks({ limit: 50, time_range: timeRange })
-				.then(response => setData(response))
+				.then(response => {
+					setTopTracks(response);
+				})
 				.catch(err => console.error(err));
 		} else if (select === "Artists") {
 			spotify
 				.getMyTopArtists({ limit: 50, time_range: timeRange })
-				.then(response => setData(response))
+				.then(response => {
+					setTopArtists(response);
+				})
 				.catch(err => console.error(err));
 		}
 	}, [select, timeRange, select]);
@@ -46,7 +53,6 @@ export const Analytics = () => {
 		}
 		return title;
 	};
-
 	return (
 		<Container>
 			<Row className="justify-content-center" fluid="xs">
@@ -143,7 +149,7 @@ export const Analytics = () => {
 									<Card.Body>
 										<Card.Title
 											style={{ fontSize: "28px" }}>
-											Card Title
+											My Top Artists
 										</Card.Title>
 										<Card.Text>
 											These are your favourite artists.
@@ -204,7 +210,13 @@ export const Analytics = () => {
 				{select === "Tracks" && (
 					<Col xs={10}>
 						<Heading>{getHeading()}</Heading>
-						<FavTracks trackData={data} />
+						<FavTracks trackData={topTracks} />
+					</Col>
+				)}
+				{select === "Artists" && (
+					<Col xs={10}>
+						<Heading>{getHeading()}</Heading>
+						<FavArtists artistData={topArtists} />
 					</Col>
 				)}
 			</Row>

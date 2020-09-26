@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Header } from "./Header";
-import styled from "styled-components";
 import Spotify from "spotify-web-api-js";
-import { Row, Col } from "react-bootstrap";
-import { FavTracks } from "./Analytics/FavTracks";
 import { Analytics } from "./Analytics";
+import { Profile } from "./Profile";
 
 const spotify = new Spotify();
 
@@ -15,6 +13,7 @@ export const Dashboard = () => {
 	return (
 		<>
 			<Header onChange={setSelected} />
+			{select === "Profile" && <Profile />}
 			{select === "Analytics" && <Analytics />}
 		</>
 	);
