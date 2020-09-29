@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Navbar } from "react-bootstrap";
 
 const Spinner = require("react-spinkit");
-export const Header = ({ onChange }) => {
+export const Header = ({ onChange, select }) => {
 	return (
 		<NavWrap>
 			<Navbar.Brand
@@ -22,13 +22,35 @@ export const Header = ({ onChange }) => {
 			</Navbar.Brand>
 			<Links>
 				<Link
-					onClick={() => onChange("Profile")}
-					style={{ marginLeft: "35px" }}>
-					Profile
+					onClick={() => onChange("Analytics")}
+					style={{ marginLeft: "35px" }}
+					style={{
+						color:
+							select === "Analytics"
+								? "rgb(200,200,200)"
+								: "rgb(150,150,150)",
+					}}>
+					Analytics
 				</Link>
-				<Link onClick={() => onChange("Analytics")}>Analytics</Link>
-				<Link onClick={() => onChange("Playlist")}>
+				<Link
+					onClick={() => onChange("Playlist")}
+					style={{
+						color:
+							select === "Playlist"
+								? "rgb(200, 200, 200)"
+								: "rgb(150,150,150)",
+					}}>
 					Playlist Generator
+				</Link>
+				<Link
+					onClick={() => onChange("Profile")}
+					style={{
+						color:
+							select === "Profile"
+								? "rgb(200, 200, 200)"
+								: "rgb(150,150,150)",
+					}}>
+					Profile
 				</Link>
 			</Links>
 		</NavWrap>
@@ -47,7 +69,6 @@ const Links = styled.div`
 
 const Link = styled.h4`
 	margin: 5px 1px 2px 25px;
-	color: rgb(150, 150, 150);
 	&:hover {
 		color: rgb(200, 200, 200);
 		cursor: pointer;

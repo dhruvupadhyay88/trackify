@@ -23,6 +23,7 @@ export const App = () => {
 	const params = getHashParams();
 	const [data, setData] = useState({
 		loggedIn: params.access_token ? true : false,
+		profileInfo: "",
 	});
 
 	if (data.loggedIn) {
