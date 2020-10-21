@@ -6,7 +6,6 @@ import {
 	Row,
 	Col,
 	Card,
-	Button,
 	Container,
 	Dropdown,
 	DropdownButton,
@@ -16,7 +15,6 @@ import TopArtistPic from "../../../images/topartist.jpg";
 import styled from "styled-components";
 
 const spotify = new Spotify();
-const Spinner = require("react-spinkit");
 
 export const Analytics = () => {
 	const [select, setSelected] = useState("Tracks");

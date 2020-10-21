@@ -3,12 +3,13 @@ import { Header } from "./Header";
 import Spotify from "spotify-web-api-js";
 import { Analytics } from "./Analytics";
 import { Profile } from "./Profile";
+import { Playlists } from "./Playlists";
 
 const spotify = new Spotify();
 
 export const Dashboard = () => {
 	const [profile, setProfile] = useState();
-	const [select, setSelected] = useState("Profile");
+	const [select, setSelected] = useState("Playlist");
 
 	useEffect(() => {
 		spotify
@@ -24,6 +25,7 @@ export const Dashboard = () => {
 				<Profile profileData={profile} />
 			)}
 			{select === "Analytics" && <Analytics />}
+			{select === "Playlist" && <Playlists />}
 		</>
 	);
 };
