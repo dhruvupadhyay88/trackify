@@ -9,11 +9,18 @@ import {
 	Dropdown,
 	DropdownButton,
 	Form,
+	Button,
 } from "react-bootstrap";
 
+const Spinner = require("react-spinkit");
 export const Playlists = () => {
 	const [visibility, setVisibility] = useState("Private");
-	const [length,setLength] = useState(50);
+	const [length, setLength] = useState(50);
+	const [preference, setPreference] = useState("Artists");
+	const [time, setTime] = useState("short_term");
+	const [name, setName] = useState("");
+	const [loading, setLoading] = useState(false);
+
 	return (
 		<Container>
 			<Row>
@@ -54,7 +61,7 @@ export const Playlists = () => {
 								</SmallCard>
 							</Col>
 							<Col xs={6}>
-							<SmallCard
+								<SmallCard
 									bg="dark"
 									text="light"
 									style={{
@@ -69,27 +76,19 @@ export const Playlists = () => {
 										title={length + " Tracks"}
 										style={{ margin: "10px 0 0 10px" }}>
 										<Dropdown.Item
-											onClick={() =>
-												setLength(20)
-											}>
+											onClick={() => setLength(20)}>
 											20
 										</Dropdown.Item>
 										<Dropdown.Item
-											onClick={() =>
-												setLength(30)
-											}>
+											onClick={() => setLength(30)}>
 											30
 										</Dropdown.Item>
 										<Dropdown.Item
-											onClick={() =>
-												setLength(40)
-											}>
+											onClick={() => setLength(40)}>
 											40
 										</Dropdown.Item>
 										<Dropdown.Item
-											onClick={() =>
-												setLength(50)
-											}>
+											onClick={() => setLength(50)}>
 											50
 										</Dropdown.Item>
 									</DropdownButton>
@@ -111,10 +110,11 @@ export const Playlists = () => {
 											Preferences
 										</Card.Title>
 										<Card.Text>
-											Choose what your playlist is made out of. 
-											Would you like top songs from your favourite
-											 artists, some of your favourite tracks, or a 
-											 little bit of both?  
+											Choose what your playlist is made
+											out of. Would you like top songs
+											from your favourite artists, some of
+											your favourite tracks, or a little
+											bit of both?
 										</Card.Text>
 										<div
 											style={{
@@ -123,14 +123,23 @@ export const Playlists = () => {
 											<DropdownButton
 												variant="success"
 												title={"Preferences"}>
-												<Dropdown.Item>
-												Top Artists
+												<Dropdown.Item
+													onClick={() =>
+														setPreference("Artists")
+													}>
+													Top Artists
 												</Dropdown.Item>
-												<Dropdown.Item>
-												Top Tracks
+												<Dropdown.Item
+													onClick={() =>
+														setPreference("Tracks")
+													}>
+													Top Tracks
 												</Dropdown.Item>
-												<Dropdown.Item>
-												A bit of both
+												<Dropdown.Item
+													onClick={() =>
+														setPreference("Both")
+													}>
+													A bit of both
 												</Dropdown.Item>
 											</DropdownButton>
 										</div>
@@ -151,8 +160,9 @@ export const Playlists = () => {
 											Time Frame
 										</Card.Title>
 										<Card.Text>
-											Choose the time frame that is analyzed when 
-											creating your playlist. Your top artists and
+											Choose the time frame that is
+											analyzed when creating your
+											playlist. Your top artists and
 											tracks will be from this time frame.
 										</Card.Text>
 										<div
@@ -162,14 +172,23 @@ export const Playlists = () => {
 											<DropdownButton
 												variant="success"
 												title={"Select Time Range"}>
-												<Dropdown.Item>
-												Short Term (1 month)
+												<Dropdown.Item
+													onClick={() =>
+														setTime("short_term")
+													}>
+													Short Term (1 month)
 												</Dropdown.Item>
-												<Dropdown.Item>
-												Medium Term (6 months)
+												<Dropdown.Item
+													onClick={() =>
+														setTime("medium_term")
+													}>
+													Medium Term (6 months)
 												</Dropdown.Item>
-												<Dropdown.Item>
-												Long Term (All Time)
+												<Dropdown.Item
+													onClick={() =>
+														setTime("long_term")
+													}>
+													Long Term (All Time)
 												</Dropdown.Item>
 											</DropdownButton>
 										</div>
@@ -190,15 +209,24 @@ export const Playlists = () => {
 											Name of Playlist
 										</Card.Title>
 										<Card.Text>
-											Give your playlist a name.<br/> 
+											Give your playlist a name.
+											<br />
 											(default name is "My Playlist")
 										</Card.Text>
 										<div
 											style={{
-												marginTop: "54px"
+												marginTop: "54px",
 											}}>
 											<Form>
-												<Form.Control type="text" size="lg" placeholder="Playlist Name"/>
+												<Form.Control
+													type="text"
+													size="lg"
+													placeholder="Playlist Name"
+													value={name}
+													onChange={e => {
+														setName(e.target.value);
+													}}
+												/>
 											</Form>
 										</div>
 									</Card.Body>
@@ -206,6 +234,22 @@ export const Playlists = () => {
 							</Col>
 						</Row>
 					</Menu>
+					<Row className="justify-content-center">
+						<Generate
+							variant="success"
+							onClick={() => setLoading(true)}>
+							{loading ? (
+								<Spinner
+									name="line-scale-pulse-out"
+									style={{
+										color: "rgb(230,230,230)",
+									}}
+								/>
+							) : (
+								"Generate Playlist"
+							)}
+						</Generate>
+					</Row>
 				</Col>
 			</Row>
 		</Container>
@@ -230,4 +274,13 @@ const SmallCard = styled(Card)`
 	margin: 0 0 20px 0;
 	height: 60px;
 	justify-content: center;
+`;
+
+const Generate = styled(Button)`
+	width: 280px;
+	height: 50px;
+	border-radius: 50px;
+	font-size: 20px;
+	font-weight: 400;
+	margin: 20px 0 200px 0;
 `;
