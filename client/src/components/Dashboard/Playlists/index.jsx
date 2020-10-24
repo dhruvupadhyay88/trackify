@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Spotify from "spotify-web-api-js";
 import styled from "styled-components";
 import {
 	Row,
@@ -11,6 +10,7 @@ import {
 	Form,
 	Button,
 } from "react-bootstrap";
+import { GeneratePlaylist } from "./GeneratePlaylist";
 
 const Spinner = require("react-spinkit");
 export const Playlists = () => {
@@ -20,6 +20,19 @@ export const Playlists = () => {
 	const [time, setTime] = useState("short_term");
 	const [name, setName] = useState("");
 	const [loading, setLoading] = useState(false);
+
+	const getTime = text => {
+		switch (text) {
+			case "short_term":
+				return "Short Term (1 month)";
+
+			case "medium_term":
+				return "Medium Term (6 month)";
+
+			case "long_term":
+				return "Long Term (All Time";
+		}
+	};
 
 	return (
 		<Container>
@@ -122,7 +135,7 @@ export const Playlists = () => {
 											}}>
 											<DropdownButton
 												variant="success"
-												title={"Preferences"}>
+												title={preference}>
 												<Dropdown.Item
 													onClick={() =>
 														setPreference("Artists")
@@ -171,7 +184,7 @@ export const Playlists = () => {
 											}}>
 											<DropdownButton
 												variant="success"
-												title={"Select Time Range"}>
+												title={getTime(time)}>
 												<Dropdown.Item
 													onClick={() =>
 														setTime("short_term")
@@ -237,7 +250,19 @@ export const Playlists = () => {
 					<Row className="justify-content-center">
 						<Generate
 							variant="success"
-							onClick={() => setLoading(true)}>
+							onClick={() => {
+								setLoading(true);
+								GeneratePlaylist(
+									{
+										name,
+										time,
+										preference,
+										length,
+										visibility,
+									},
+									setLoading
+								);
+							}}>
 							{loading ? (
 								<Spinner
 									name="line-scale-pulse-out"
