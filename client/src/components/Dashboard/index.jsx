@@ -9,7 +9,7 @@ const spotify = new Spotify();
 
 export const Dashboard = () => {
 	const [profile, setProfile] = useState();
-	const [select, setSelected] = useState("Playlist");
+	const [select, setSelected] = useState("Analytics");
 
 	useEffect(() => {
 		spotify

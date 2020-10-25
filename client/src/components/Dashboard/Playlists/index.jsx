@@ -10,7 +10,7 @@ import {
 	Form,
 	Button,
 } from "react-bootstrap";
-import { GeneratePlaylist } from "./GeneratePlaylist";
+import { generatePlaylist } from "./generatePlaylist";
 
 const Spinner = require("react-spinkit");
 export const Playlists = () => {
@@ -252,7 +252,7 @@ export const Playlists = () => {
 							variant="success"
 							onClick={() => {
 								setLoading(true);
-								GeneratePlaylist(
+								generatePlaylist(
 									{
 										name,
 										time,

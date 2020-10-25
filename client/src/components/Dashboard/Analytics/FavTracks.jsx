@@ -11,6 +11,7 @@ export const FavTracks = ({ trackData }) => {
 	useEffect(() => {
 		setFavTracks(trackData);
 		setTableRange([0, 10]);
+		setIsDisabled([true, false]);
 	}, [trackData]);
 
 	const Next = () => {

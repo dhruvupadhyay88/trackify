@@ -11,6 +11,7 @@ export const FavArtists = ({ artistData }) => {
 	useEffect(() => {
 		setFavArtists(artistData);
 		setTableRange([0, 10]);
+		setIsDisabled([true, false]);
 	}, [artistData]);
 
 	const Next = () => {
