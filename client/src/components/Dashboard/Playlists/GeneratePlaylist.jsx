@@ -2,7 +2,7 @@ import Spotify from "spotify-web-api-js";
 
 const spotify = new Spotify();
 
-export const generatePlaylist = async (params, setLoading) => {
+export const generatePlaylist = async (params, setComplete) => {
 	const info = await spotify.getMe();
 	const isPublic = params.visibility === "Public" ? true : false;
 	const playlistName = params.name ? params.name : "My Playlist";
@@ -32,7 +32,7 @@ export const generatePlaylist = async (params, setLoading) => {
 
 	spotify.addTracksToPlaylist(playlist.id, tracks);
 
-	setLoading(false);
+	setComplete(true);
 };
 
 const bothTracks = async (favArtists, favTracks, length) => {

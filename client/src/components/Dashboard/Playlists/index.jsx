@@ -12,14 +12,13 @@ import {
 } from "react-bootstrap";
 import { generatePlaylist } from "./generatePlaylist";
 
-const Spinner = require("react-spinkit");
 export const Playlists = () => {
 	const [visibility, setVisibility] = useState("Private");
 	const [length, setLength] = useState(50);
 	const [preference, setPreference] = useState("Artists");
 	const [time, setTime] = useState("short_term");
 	const [name, setName] = useState("");
-	const [loading, setLoading] = useState(false);
+	const [complete, setComplete] = useState(false);
 
 	const getTime = text => {
 		switch (text) {
@@ -39,7 +38,9 @@ export const Playlists = () => {
 			<Row>
 				<Col xs={12}>
 					<Heading>
-						Generate a personalized playlist tailored to you:
+						{complete
+							? "Finished Generating! Open spotify to view your playlist!"
+							: "Generate a personalized playlist tailored to you:"}
 					</Heading>
 					<Menu>
 						<Row className="justify-content-center">
@@ -51,9 +52,9 @@ export const Playlists = () => {
 										display: "flex",
 										flexDirection: "row",
 									}}>
-									<h4 style={{ margin: "14px 10px 0 0" }}>
+									<h3 style={{ margin: "14px 10px 10px 0" }}>
 										Visibility:
-									</h4>
+									</h3>
 									<DropdownButton
 										variant="success"
 										title={visibility}
@@ -81,9 +82,9 @@ export const Playlists = () => {
 										display: "flex",
 										flexDirection: "row",
 									}}>
-									<h4 style={{ margin: "14px 10px 0 0" }}>
+									<h3 style={{ margin: "14px 10px 10px 0" }}>
 										Playlist Length:
-									</h4>
+									</h3>
 									<DropdownButton
 										variant="success"
 										title={length + " Tracks"}
@@ -119,7 +120,7 @@ export const Playlists = () => {
 									text="light">
 									<Card.Body>
 										<Card.Title
-											style={{ fontSize: "28px" }}>
+											style={{ fontSize: "30px" }}>
 											Preferences
 										</Card.Title>
 										<Card.Text>
@@ -169,7 +170,7 @@ export const Playlists = () => {
 									text="light">
 									<Card.Body>
 										<Card.Title
-											style={{ fontSize: "28px" }}>
+											style={{ fontSize: "30px" }}>
 											Time Frame
 										</Card.Title>
 										<Card.Text>
@@ -218,7 +219,7 @@ export const Playlists = () => {
 									text="light">
 									<Card.Body>
 										<Card.Title
-											style={{ fontSize: "28px" }}>
+											style={{ fontSize: "30px" }}>
 											Name of Playlist
 										</Card.Title>
 										<Card.Text>
@@ -247,11 +248,12 @@ export const Playlists = () => {
 							</Col>
 						</Row>
 					</Menu>
+
 					<Row className="justify-content-center">
 						<Generate
 							variant="success"
 							onClick={() => {
-								setLoading(true);
+								setComplete(false);
 								generatePlaylist(
 									{
 										name,
@@ -260,19 +262,10 @@ export const Playlists = () => {
 										length,
 										visibility,
 									},
-									setLoading
+									setComplete
 								);
 							}}>
-							{loading ? (
-								<Spinner
-									name="line-scale-pulse-out"
-									style={{
-										color: "rgb(230,230,230)",
-									}}
-								/>
-							) : (
-								"Generate Playlist"
-							)}
+							Generate Playlist
 						</Generate>
 					</Row>
 				</Col>
@@ -296,16 +289,17 @@ const Menu = styled.div`
 const SmallCard = styled(Card)`
 	border-color: rgb(40, 40, 40);
 	border-radius: 20px;
-	margin: 0 0 20px 0;
-	height: 60px;
+	margin: 0 0 30px 0;
+	height: 80px;
 	justify-content: center;
+	align-items: center;
 `;
 
 const Generate = styled(Button)`
-	width: 280px;
-	height: 50px;
+	width: 500px;
+	height: 80px;
 	border-radius: 50px;
-	font-size: 20px;
-	font-weight: 400;
-	margin: 20px 0 200px 0;
+	font-size: 40px;
+	font-weight: 500;
+	margin: 20px 0 600px 0;
 `;
