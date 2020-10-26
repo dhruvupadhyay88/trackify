@@ -51,6 +51,18 @@ export const Analytics = () => {
 		}
 		return title;
 	};
+
+	const getTime = () => {
+		let title = "";
+		if (timeRange === "short_term") {
+			title += "Short Term - 1 month";
+		} else if (timeRange === "medium_term") {
+			title += "Medium Term - 6 months";
+		} else if (timeRange === "long_term") {
+			title += "Long Term - All Time";
+		}
+		return title;
+	};
 	return (
 		<Container>
 			<Row className="justify-content-center" fluid="xs">
@@ -78,13 +90,12 @@ export const Analytics = () => {
 											style={{ fontSize: "28px" }}>
 											My Top Tracks
 										</Card.Title>
-										<Card.Text>
-											These are the tracks that you keep
-											coming back to. These are the tracks
-											that you keep coming back to. These
-											are the tracks that you keep coming
-											back to. These are the tracks that
-											you keep coming back to.
+										<Card.Text style={{ fontSize: "18px" }}>
+											These are the tracks that you
+											couldn't get enough of. Select a
+											time range that you'd like to
+											analyze and discover what your
+											favourite music is.
 										</Card.Text>
 										<div
 											style={{
@@ -92,7 +103,7 @@ export const Analytics = () => {
 											}}>
 											<DropdownButton
 												variant="success"
-												title={"Select Time Range"}>
+												title={getTime()}>
 												<Dropdown.Item
 													eventKey="1"
 													onClick={() => {
@@ -149,13 +160,12 @@ export const Analytics = () => {
 											style={{ fontSize: "28px" }}>
 											My Top Artists
 										</Card.Title>
-										<Card.Text>
-											These are your favourite artists.
-											These are your favourite
-											artists.These are your favourite
-											artists.These are your favourite
-											artists.These are your favourite
-											artists.
+										<Card.Text style={{ fontSize: "18px" }}>
+											These are the artists that
+											frequently have on repeat. They are
+											the ones whose songs and albums you
+											have been listening to the most
+											often.
 										</Card.Text>
 										<div
 											style={{
@@ -163,7 +173,7 @@ export const Analytics = () => {
 											}}>
 											<DropdownButton
 												variant="success"
-												title={"Select Time Range"}>
+												title={getTime()}>
 												<Dropdown.Item
 													eventKey="1"
 													onClick={() => {

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Row, Col, Table, Container } from "react-bootstrap";
 import Spotify from "spotify-web-api-js";
 import { RecentlyPlayed } from "./RecentlyPlayed";
+import ProfilePic from "../../../images/dp.jpg";
 
 const spotify = new Spotify();
 export const Profile = ({ profileData }) => {
@@ -15,7 +16,7 @@ export const Profile = ({ profileData }) => {
 			})
 			.catch(err => console.error(err));
 	}, [profileData]);
-	console.log(recentlyPlayed);
+	console.log(profileData);
 	return (
 		<Container>
 			<Row className="justify-content-center">
@@ -35,13 +36,15 @@ export const Profile = ({ profileData }) => {
 							<Col xs={4} style={{ marginTop: "13px" }}>
 								<Text>{profileData.display_name}</Text>
 								<Text>
-									{profileData.product
-										.slice(0, 1)
-										.toUpperCase() +
-										profileData.product.slice(
-											1,
-											profileData.product.length
-										)}
+									{profileData.product == "open"
+										? "Free"
+										: profileData.product
+												.slice(0, 1)
+												.toUpperCase() +
+										  profileData.product.slice(
+												1,
+												profileData.product.length
+										  )}
 								</Text>
 								<Text>{profileData.email}</Text>
 								<Text>{profileData.country}</Text>
@@ -56,7 +59,12 @@ export const Profile = ({ profileData }) => {
 											alignItems: "center",
 										}}>
 										<img
-											src={profileData.images[0].url}
+											src={
+												profileData.images &&
+												profileData.images[0]
+													? profileData.images[0].url
+													: ProfilePic
+											}
 											style={{
 												height: 120,
 												margin: "20px 40px 0 0",

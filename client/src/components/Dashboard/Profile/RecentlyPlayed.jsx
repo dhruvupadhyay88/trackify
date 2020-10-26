@@ -35,7 +35,7 @@ export const RecentlyPlayed = ({ trackData }) => {
 				<>
 					<thead>
 						<tr>
-							<th>Album Image</th>
+							<th>Cover</th>
 							<th>Song Name</th>
 							<th>Artists</th>
 							<th>Explicit Lyrics</th>

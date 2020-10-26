@@ -61,7 +61,11 @@ export const FavTracks = ({ trackData }) => {
 											})}
 										</td>
 										<td>{data.album.name}</td>
-										<td>
+										<td
+											style={{
+												display: "flex",
+												justifyContent: "center",
+											}}>
 											{
 												<img
 													src={

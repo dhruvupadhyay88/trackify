@@ -54,7 +54,11 @@ export const FavArtists = ({ artistData }) => {
 								return (
 									<tr key={index}>
 										<td>{index + tableRange[0] + 1}</td>
-										<td>
+										<td
+											style={{
+												display: "flex",
+												justifyContent: "center",
+											}}>
 											{
 												<img
 													src={data.images[0].url}

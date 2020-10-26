@@ -4,7 +4,7 @@ import { Button, Container, Row, Col } from "react-bootstrap";
 import styled from "styled-components";
 import { Dashboard } from "./components/Dashboard";
 import { LoginHeader } from "./components/Login/LoginHeader";
-import Background from "./images/loginbg.jpg";
+import Background from "./images/loginbg1.jpg";
 
 const spotify = new Spotify();
 
@@ -58,7 +58,7 @@ export const App = () => {
 						</a>
 						<h7
 							style={{
-								color: "rgb(110,110,110)",
+								color: "rgb(150,150,150)",
 								marginTop: "20px",
 							}}>
 							Made by{" "}
@@ -70,7 +70,7 @@ export const App = () => {
 							{"  "}
 							<a
 								href="https://github.com/dhruvupadhyay88"
-								style={{ color: "rgb(140,140,140)" }}>
+								style={{ color: "rgb(170,170,170)" }}>
 								Dhruv Upadhyay
 							</a>
 						</h7>
