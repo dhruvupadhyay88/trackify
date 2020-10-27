@@ -1,2 +1,3 @@
 
-web:node server/app.js
+web: cd server
+web: npm start
