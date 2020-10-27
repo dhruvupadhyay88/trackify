@@ -4,7 +4,6 @@ import Spotify from "spotify-web-api-js";
 import { Analytics } from "./Analytics";
 import { Profile } from "./Profile";
 import { Playlists } from "./Playlists";
-
 const spotify = new Spotify();
 
 export const Dashboard = () => {

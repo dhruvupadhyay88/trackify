@@ -52,7 +52,7 @@ export const Analytics = () => {
 		return title;
 	};
 
-	const getTime = () => {
+	const getTime = choice => {
 		let title = "";
 		if (timeRange === "short_term") {
 			title += "Short Term - 1 month";
@@ -61,7 +61,12 @@ export const Analytics = () => {
 		} else if (timeRange === "long_term") {
 			title += "Long Term - All Time";
 		}
-		return title;
+
+		if (choice === select) {
+			return title;
+		} else {
+			return "Select Time Range";
+		}
 	};
 	return (
 		<Container>
@@ -103,7 +108,7 @@ export const Analytics = () => {
 											}}>
 											<DropdownButton
 												variant="success"
-												title={getTime()}>
+												title={getTime("Tracks")}>
 												<Dropdown.Item
 													eventKey="1"
 													onClick={() => {
@@ -173,7 +178,7 @@ export const Analytics = () => {
 											}}>
 											<DropdownButton
 												variant="success"
-												title={getTime()}>
+												title={getTime("Artists")}>
 												<Dropdown.Item
 													eventKey="1"
 													onClick={() => {

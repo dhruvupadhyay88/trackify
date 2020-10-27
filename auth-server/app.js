@@ -1,29 +1,58 @@
-/**
- * This is an example of a basic node.js script that performs
- * the Authorization Code oAuth2 flow to authenticate against
- * the Spotify Accounts.
- *
- * For more information, read
- * https://developer.spotify.com/web-api/authorization-guide/#authorization_code_flow
- */
-
+var createError = require("http-errors");
+var express = require("express");
+var path = require("path");
+var cookieParser = require("cookie-parser");
+var logger = require("morgan");
 require("dotenv").config();
-var express = require("express"); // Express web server framework
+var indexRouter = require("./routes/index");
+var usersRouter = require("./routes/users");
 var request = require("request"); // "Request" library
 var cors = require("cors");
 var querystring = require("querystring");
-var cookieParser = require("cookie-parser");
 
 var port = process.env.port || 8888;
 var client_id = process.env.CLIENT_ID; // Your client id
 var client_secret = process.env.CLIENT_SECRET; // Your secret
 var redirect_uri = "http://localhost:8888/callback"; // Your redirect uri
 
-/**
- * Generates a random string containing numbers and letters
- * @param  {number} length The length of the string
- * @return {string} The generated string
- */
+var app = express();
+
+// view engine setup
+app.use(express.static(path.join(__dirname, "build")));
+
+app.get("/*", (req, res) => {
+	res.sendFile(path.join(__dirname, "build", "index.html"));
+});
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "jade");
+
+app.use(logger("dev"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, "public")));
+
+app.use("/", indexRouter);
+app.use("/users", usersRouter);
+
+// catch 404 and forward to error handler
+app.use(function (req, res, next) {
+	next(createError(404));
+});
+
+// error handler
+app.use(function (err, req, res, next) {
+	// set locals, only providing error in development
+	res.locals.message = err.message;
+	res.locals.error = req.app.get("env") === "development" ? err : {};
+
+	// render the error page
+	res.status(err.status || 500);
+	res.render("error");
+});
+
+module.exports = app;
+
 var generateRandomString = function (length) {
 	var text = "";
 	var possible =
@@ -159,5 +188,4 @@ app.get("/refresh_token", function (req, res) {
 	});
 });
 
-console.log("Listening on 8888");
 app.listen(port);
