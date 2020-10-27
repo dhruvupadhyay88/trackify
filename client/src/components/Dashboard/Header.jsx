@@ -17,7 +17,7 @@ export const Header = ({ onChange, select }) => {
 					}}
 				/>
 				<h1 style={{ color: "rgb(29,185,84)", marginLeft: "25px" }}>
-					Spotify Stats
+					Trackify
 				</h1>
 			</Navbar.Brand>
 			<Links>
