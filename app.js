@@ -21,7 +21,7 @@ var app = express();
 app.use(express.static(path.join(__dirname, "/client/build")));
 
 app.get("/*", (req, res) => {
-	res.sendFile(path.join(__dirname, "/client/buildbuild", "index.html"));
+	res.sendFile(path.join(__dirname, "/client/build", "index.html"));
 });
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
@@ -30,7 +30,7 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "/client/build")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
@@ -68,7 +68,7 @@ var stateKey = "spotify_auth_state";
 
 var app = express();
 
-app.use(express.static(__dirname + "/public"))
+app.use(express.static(__dirname + "/client/build"))
 	.use(cors())
 	.use(cookieParser());
 
