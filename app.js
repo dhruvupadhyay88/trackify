@@ -18,10 +18,10 @@ var redirect_uri = "http://localhost:8888/callback"; // Your redirect uri
 var app = express();
 
 // view engine setup
-app.use(express.static(path.join(__dirname, "build")));
+app.use(express.static(path.join(__dirname, "/client/build")));
 
 app.get("/*", (req, res) => {
-	res.sendFile(path.join(__dirname, "build", "index.html"));
+	res.sendFile(path.join(__dirname, "/client/buildbuild", "index.html"));
 });
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
