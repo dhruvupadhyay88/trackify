@@ -53,7 +53,7 @@ export const App = () => {
 							flexDirection: "column",
 							marginTop: "230px",
 						}}>
-						<a href="http://localhost:8888/login">
+						<a href="https://trackify-spotify-tool.herokuapp.com/login">
 							<Login variant="success">Log in with Spotify</Login>
 						</a>
 						<h7
