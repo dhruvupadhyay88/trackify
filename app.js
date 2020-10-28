@@ -17,15 +17,9 @@ var redirect_uri = "http://localhost:8888/callback"; // Your redirect uri
 
 var app = express();
 
-// view engine setup
-app.use(express.static(path.join(__dirname, "/client/build")));
-
-app.get("/*", (req, res) => {
-	res.sendFile(path.join(__dirname, "/client/build", "index.html"));
-});
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
-
+// view engine setup
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -40,6 +34,12 @@ app.use(function (req, res, next) {
 	next(createError(404));
 });
 
+app.use(express.static(path.join(__dirname, "/client/build")));
+
+app.get("/*", (req, res) => {
+	res.sendFile(path.join(__dirname, "/client/build", "index.html"));
+});
+
 // error handler
 app.use(function (err, req, res, next) {
 	// set locals, only providing error in development
@@ -50,8 +50,6 @@ app.use(function (err, req, res, next) {
 	res.status(err.status || 500);
 	res.render("error");
 });
-
-module.exports = app;
 
 var generateRandomString = function (length) {
 	var text = "";
@@ -189,3 +187,4 @@ app.get("/refresh_token", function (req, res) {
 });
 
 app.listen(port);
+module.exports = app;
