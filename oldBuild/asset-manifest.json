@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.js": "/static/js/main.47efe70b.chunk.js",
+    "main.js.map": "/static/js/main.47efe70b.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.09b85ec0.js",
+    "runtime-main.js.map": "/static/js/runtime-main.09b85ec0.js.map",
+    "static/css/2.d97600f8.chunk.css": "/static/css/2.d97600f8.chunk.css",
+    "static/js/2.6f4824a5.chunk.js": "/static/js/2.6f4824a5.chunk.js",
+    "static/js/2.6f4824a5.chunk.js.map": "/static/js/2.6f4824a5.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.5b13dccb778ca3811b6b0ae21f7c6855.js": "/precache-manifest.5b13dccb778ca3811b6b0ae21f7c6855.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.d97600f8.chunk.css.map": "/static/css/2.d97600f8.chunk.css.map",
+    "static/js/2.6f4824a5.chunk.js.LICENSE.txt": "/static/js/2.6f4824a5.chunk.js.LICENSE.txt",
+    "static/media/loginbg1.jpg": "/static/media/loginbg1.36f90297.jpg",
+    "static/media/topartist.jpg": "/static/media/topartist.c2e472f1.jpg",
+    "static/media/toptracks.jpg": "/static/media/toptracks.43a7ebbc.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.09b85ec0.js",
+    "static/css/2.d97600f8.chunk.css",
+    "static/js/2.6f4824a5.chunk.js",
+    "static/js/main.47efe70b.chunk.js"
+  ]
+}
