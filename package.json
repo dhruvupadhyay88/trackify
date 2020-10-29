@@ -5,13 +5,14 @@
 	"scripts": {
 		"start": "node ./bin/www react-scripts start",
 		"test": "react-scripts test",
-		"eject": "react-scripts eject"
+		"eject": "react-scripts eject",
+		"build": "react-scripts build"
 	},
-	"heroku-run-build-scripts": false,
+	//"heroku-run-build-scripts": false,
 	"dependencies": {
 		"cookie-parser": "^1.4.5",
 		"cors": "^2.8.5",
-		"debug": "^2.6.9",
+		"debug": "^2.6.9",z
 		"dotenv": "^8.2.0",
 		"express": "~4.16.1",
 		"http-errors": "^1.6.3",
