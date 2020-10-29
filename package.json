@@ -6,7 +6,8 @@
 		"start": "node ./bin/www react-scripts start",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
-		"build": "react-scripts build"
+		"build": "react-scripts build",
+		"heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
 	},
 	"dependencies": {
 		"cookie-parser": "^1.4.5",
