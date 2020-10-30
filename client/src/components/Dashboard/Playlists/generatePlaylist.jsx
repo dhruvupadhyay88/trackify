@@ -41,7 +41,6 @@ const bothTracks = async (favArtists, favTracks, length) => {
 	const num = Math.trunc(length / 2 / capacity); // int division
 	let difference =
 		num * capacity === length / 2 ? 0 : length / 2 - num * capacity;
-	console.log(favTracks);
 	for (let i = 0; i < capacity; i++) {
 		const artist = favArtists.items[i];
 		const topTracks = await spotify.getArtistTopTracks(
