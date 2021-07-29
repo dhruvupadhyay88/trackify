@@ -11,7 +11,6 @@ Have you ever wanted to know what your top artists and tracks are on spotify? Ho
 - View ranked table of your top artists in short (1 month), medium (6 months) and long (All time) term time frames
 - Generate playlist of up to 50 songs using data of your top artists and songs in different time frames. Once generated, it will automatically appear in your spotify app
 - View profile information and recently played tracks
-<br/>
 
 # Frameworks and Libraries<br/>
 - ReactJS <br/>
