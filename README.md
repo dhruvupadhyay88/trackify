@@ -1,5 +1,3 @@
-View project at https://trackify-spotify-tool.herokuapp.com/ <br/>
-*Make take up to 30 seconds if heroku app is sleeping...*
 # Overview <br/>
 Trackify is a spotify analytics and playlist generation tool. <br/>
 
